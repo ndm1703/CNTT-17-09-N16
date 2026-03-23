@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_qlkh_khach_hang,access_qlkh_khach_hang,model_qlkh_khach_hang,base.group_user,1,1,1,1
+access_qlkh_co_hoi,access_qlkh_co_hoi,model_qlkh_co_hoi,base.group_user,1,1,1,1
+access_qlkh_tuong_tac,access_qlkh_tuong_tac,model_qlkh_tuong_tac,base.group_user,1,1,1,1
+access_qlkh_hop_dong,access_qlkh_hop_dong,model_qlkh_hop_dong,base.group_user,1,1,1,1
+access_qlkh_giao_dich,access_qlkh_giao_dich,model_qlkh_giao_dich,base.group_user,1,1,1,1
+access_qlkh_ghi_chu,access_qlkh_ghi_chu,model_qlkh_ghi_chu,base.group_user,1,1,1,1
+access_qlkh_phan_hoi,access_qlkh_phan_hoi,model_qlkh_phan_hoi,base.group_user,1,1,1,1
+access_qlkh_nhiem_vu,access_qlkh_nhiem_vu,model_qlkh_nhiem_vu,base.group_user,1,1,1,1
+access_qlkh_marketing,access_qlkh_marketing,model_qlkh_marketing,base.group_user,1,1,1,1

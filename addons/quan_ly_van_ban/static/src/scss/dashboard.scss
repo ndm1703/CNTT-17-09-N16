@@ -1,0 +1,212 @@
+.o_van_ban_dashboard {
+    padding: 24px 18px 28px;
+    background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+    min-height: 100%;
+}
+
+.o_van_ban_dashboard_header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.o_van_ban_dashboard_header h1 {
+    margin: 0 0 8px;
+    color: #24496b;
+    font-size: 38px;
+    font-weight: 700;
+}
+
+.o_van_ban_dashboard_header p {
+    margin: 0;
+    color: #587089;
+    font-size: 16px;
+}
+
+.o_van_ban_shortcuts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.o_van_ban_shortcut,
+.o_van_ban_card {
+    text-decoration: none !important;
+}
+
+.o_van_ban_shortcut {
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #24496b;
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.o_van_ban_card_grid,
+.o_van_ban_chart_grid {
+    display: grid;
+    gap: 18px;
+}
+
+.o_van_ban_card_grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-bottom: 18px;
+}
+
+.o_van_ban_card,
+.o_van_ban_summary_box,
+.o_van_ban_chart_panel {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+.o_van_ban_card {
+    padding: 18px 20px;
+    border-top: 4px solid #3b82f6;
+}
+
+.o_van_ban_card_label {
+    color: #4b5f75;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.o_van_ban_card_value {
+    margin-top: 8px;
+    color: #0f2942;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.o_van_ban_summary_row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.o_van_ban_summary_box {
+    overflow: hidden;
+}
+
+.o_van_ban_section_title {
+    padding: 16px 18px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.o_van_ban_summary_items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding: 18px;
+}
+
+.o_van_ban_summary_item {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 14px 16px;
+}
+
+.o_van_ban_item_label {
+    display: block;
+    color: #5f7387;
+    margin-bottom: 8px;
+}
+
+.o_van_ban_item_value {
+    color: #0f2942;
+    font-size: 20px;
+}
+
+.o_van_ban_chart_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.o_van_ban_chart_panel {
+    overflow: hidden;
+}
+
+.o_van_ban_chart_body {
+    height: 320px;
+    padding: 18px;
+}
+
+.o_theme_blue {
+    border-top-color: #2563eb;
+}
+.o_theme_green {
+    border-top-color: #16a34a;
+}
+.o_theme_cyan {
+    border-top-color: #0891b2;
+}
+.o_theme_amber {
+    border-top-color: #f59e0b;
+}
+.o_theme_red {
+    border-top-color: #ef4444;
+}
+.o_theme_slate {
+    border-top-color: #64748b;
+}
+.o_theme_dark {
+    border-top-color: #1f2937;
+}
+
+.o_van_ban_summary_box.o_theme_slate .o_van_ban_section_title {
+    background: #6b93b2;
+}
+.o_van_ban_summary_box.o_theme_cyan .o_van_ban_section_title {
+    background: #0ea5b9;
+}
+.o_van_ban_chart_panel.o_theme_green .o_van_ban_section_title {
+    background: #2faa45;
+}
+.o_van_ban_chart_panel.o_theme_blue .o_van_ban_section_title {
+    background: #2563eb;
+}
+.o_van_ban_chart_panel.o_theme_amber .o_van_ban_section_title {
+    background: #f59e0b;
+}
+.o_van_ban_chart_panel.o_theme_dark .o_van_ban_section_title {
+    background: #2d3748;
+}
+.o_van_ban_chart_panel.o_theme_red .o_van_ban_section_title {
+    background: #e63946;
+}
+
+@media (max-width: 1200px) {
+    .o_van_ban_card_grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .o_van_ban_dashboard_header,
+    .o_van_ban_summary_row,
+    .o_van_ban_chart_grid {
+        grid-template-columns: 1fr;
+        display: grid;
+    }
+
+    .o_van_ban_card_grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .o_van_ban_card_grid,
+    .o_van_ban_summary_items {
+        grid-template-columns: 1fr;
+    }
+
+    .o_van_ban_chart_body {
+        height: 260px;
+    }
+}

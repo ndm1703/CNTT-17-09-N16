@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="quan_ly_van_ban.DashboardMain">
+        <div class="o_van_ban_dashboard">
+            <div class="o_van_ban_dashboard_header">
+                <div>
+                    <h1 t-esc="dashboard.title"/>
+                    <p>Dashboard tổng hợp văn bản đến, văn bản đi và tiến độ xử lý trong hệ thống.</p>
+                </div>
+                <div class="o_van_ban_shortcuts">
+                    <t t-foreach="dashboard.shortcuts" t-as="shortcut">
+                        <a
+                            href="#"
+                            class="o_van_ban_dashboard_action_link o_van_ban_shortcut"
+                            t-att-data-action-xmlid="shortcut.action_xmlid"
+                        >
+                            <t t-esc="shortcut.label"/>
+                        </a>
+                    </t>
+                </div>
+            </div>
+
+            <div class="o_van_ban_card_grid">
+                <t t-foreach="dashboard.cards" t-as="card">
+                    <a
+                        href="#"
+                        t-attf-class="o_van_ban_dashboard_action_link o_van_ban_card o_theme_#{card.theme}"
+                        t-att-data-action-xmlid="card.action_xmlid"
+                    >
+                        <div class="o_van_ban_card_label" t-esc="card.label"/>
+                        <div class="o_van_ban_card_value" t-esc="card.value"/>
+                    </a>
+                </t>
+            </div>
+
+            <div class="o_van_ban_summary_row">
+                <t t-foreach="dashboard.summary_sections" t-as="section">
+                    <div t-attf-class="o_van_ban_summary_box o_theme_#{section.theme}">
+                        <div class="o_van_ban_section_title" t-esc="section.title"/>
+                        <div class="o_van_ban_summary_items">
+                            <t t-foreach="section.items" t-as="item">
+                                <div class="o_van_ban_summary_item">
+                                    <span class="o_van_ban_item_label" t-esc="item.label"/>
+                                    <strong class="o_van_ban_item_value" t-esc="item.value"/>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </div>
+
+            <div class="o_van_ban_chart_grid">
+                <div class="o_van_ban_chart_panel o_theme_green">
+                    <div class="o_van_ban_section_title">
+                        Văn bản đến theo tháng <t t-esc="dashboard.current_year"/>
+                    </div>
+                    <div class="o_van_ban_chart_body">
+                        <canvas class="o_van_ban_monthly_incoming_chart"/>
+                    </div>
+                </div>
+                <div class="o_van_ban_chart_panel o_theme_blue">
+                    <div class="o_van_ban_section_title">
+                        Văn bản đi theo tháng <t t-esc="dashboard.current_year"/>
+                    </div>
+                    <div class="o_van_ban_chart_body">
+                        <canvas class="o_van_ban_monthly_outgoing_chart"/>
+                    </div>
+                </div>
+                <div class="o_van_ban_chart_panel o_theme_amber">
+                    <div class="o_van_ban_section_title">Khối lượng theo nhân viên xử lý</div>
+                    <div class="o_van_ban_chart_body">
+                        <canvas class="o_van_ban_employee_chart"/>
+                    </div>
+                </div>
+                <div class="o_van_ban_chart_panel o_theme_dark">
+                    <div class="o_van_ban_section_title">Trạng thái xử lý</div>
+                    <div class="o_van_ban_chart_body">
+                        <canvas class="o_van_ban_status_chart"/>
+                    </div>
+                </div>
+                <div class="o_van_ban_chart_panel o_theme_red">
+                    <div class="o_van_ban_section_title">Phân bổ độ ưu tiên</div>
+                    <div class="o_van_ban_chart_body">
+                        <canvas class="o_van_ban_priority_chart"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

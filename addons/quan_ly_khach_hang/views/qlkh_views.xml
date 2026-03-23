@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="qlkh_menu_root" name="QLKH" sequence="1"/>
+
+        <record id="view_qlkh_khach_hang_search" model="ir.ui.view">
+            <field name="name">qlkh.khach_hang.search</field>
+            <field name="model">qlkh.khach_hang</field>
+            <field name="arch" type="xml">
+                <search string="Khách hàng">
+                    <field name="ma_khach_hang"/>
+                    <field name="ten_khach_hang"/>
+                    <field name="email"/>
+                    <field name="so_dien_thoai"/>
+                    <field name="ten_cong_ty"/>
+                    <filter name="filter_dang_hoat_dong" string="Đang hoạt động" domain="[('trang_thai', '=', 'dang_hoat_dong')]"/>
+                    <filter name="filter_moi" string="Mới" domain="[('trang_thai', '=', 'moi')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_loai_khach" string="Loại khách hàng" context="{'group_by': 'loai_khach_hang'}"/>
+                        <filter name="group_muc_thu_nhap" string="Mức thu nhập" context="{'group_by': 'muc_thu_nhap'}"/>
+                        <filter name="group_trang_thai" string="Trạng thái" context="{'group_by': 'trang_thai'}"/>
+                    </group>
+                    <searchpanel>
+                        <field name="loai_khach_hang" string="Loại khách hàng"/>
+                        <field name="muc_thu_nhap" string="Mức thu nhập"/>
+                        <field name="trang_thai" string="Trạng thái"/>
+                        <field name="gioi_tinh" string="Giới tính"/>
+                        <field name="nhom_do_tuoi" string="Nhóm độ tuổi"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_qlkh_khach_hang_tree" model="ir.ui.view">
+            <field name="name">qlkh.khach_hang.tree</field>
+            <field name="model">qlkh.khach_hang</field>
+            <field name="arch" type="xml">
+                <tree string="Khách hàng" default_order="ma_khach_hang">
+                    <field name="ma_khach_hang"/>
+                    <field name="ten_khach_hang"/>
+                    <field name="email"/>
+                    <field name="so_dien_thoai"/>
+                    <field name="dia_chi"/>
+                    <field name="loai_khach_hang"/>
+                    <field name="muc_thu_nhap"/>
+                    <field name="ten_cong_ty"/>
+                    <field name="trang_thai"/>
+                    <field name="tong_so_don_hang"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_qlkh_khach_hang_form" model="ir.ui.view">
+            <field name="name">qlkh.khach_hang.form</field>
+            <field name="model">qlkh.khach_hang</field>
+            <field name="arch" type="xml">
+                <form string="Khách hàng">
+                    <sheet>
+                        <group col="4">
+                            <field name="ma_khach_hang"/>
+                            <field name="ten_khach_hang"/>
+                            <field name="email"/>
+                            <field name="so_dien_thoai"/>
+                            <field name="dia_chi"/>
+                            <field name="loai_khach_hang"/>
+                            <field name="muc_thu_nhap"/>
+                            <field name="gioi_tinh"/>
+                            <field name="ngay_sinh"/>
+                            <field name="nhom_do_tuoi" readonly="1"/>
+                            <field name="ten_cong_ty"/>
+                            <field name="trang_thai"/>
+                            <field name="tong_so_don_hang" readonly="1"/>
+                            <field name="tong_giao_dich" readonly="1"/>
+                        </group>
+                        <group string="Ghi chú tổng quan">
+                            <field name="ghi_chu_tong_quan"/>
+                        </group>
+                        <notebook>
+                            <page string="Cơ hội"><field name="co_hoi_ids"/></page>
+                            <page string="Tương tác"><field name="tuong_tac_ids"/></page>
+                            <page string="Hợp đồng"><field name="hop_dong_ids"/></page>
+                            <page string="Lịch sử giao dịch"><field name="giao_dich_ids"/></page>
+                            <page string="Ghi chú"><field name="ghi_chu_ids"/></page>
+                            <page string="Phản hồi"><field name="phan_hoi_ids"/></page>
+                            <page string="Nhiệm vụ"><field name="nhiem_vu_ids"/></page>
+                            <page string="Marketing"><field name="marketing_ids"/></page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_qlkh_khach_hang" model="ir.actions.act_window">
+            <field name="name">Khách hàng</field>
+            <field name="res_model">qlkh.khach_hang</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_qlkh_khach_hang_search"/>
+        </record>
+
+        <record id="view_qlkh_co_hoi_tree" model="ir.ui.view">
+            <field name="name">qlkh.co_hoi.tree</field>
+            <field name="model">qlkh.co_hoi</field>
+            <field name="arch" type="xml">
+                <tree><field name="name"/><field name="khach_hang_id"/><field name="gia_tri_du_kien"/><field name="giai_doan"/><field name="ngay_du_kien"/><field name="nguoi_phu_trach"/></tree>
+            </field>
+        </record>
+        <record id="view_qlkh_co_hoi_form" model="ir.ui.view">
+            <field name="name">qlkh.co_hoi.form</field>
+            <field name="model">qlkh.co_hoi</field>
+            <field name="arch" type="xml">
+                <form string="Cơ hội"><sheet><group col="4"><field name="name"/><field name="khach_hang_id"/><field name="gia_tri_du_kien"/><field name="giai_doan"/><field name="ngay_du_kien"/><field name="nguoi_phu_trach"/></group><group><field name="mo_ta"/></group></sheet></form>
+            </field>
+        </record>
+        <record id="action_qlkh_co_hoi" model="ir.actions.act_window">
+            <field name="name">Cơ hội</field>
+            <field name="res_model">qlkh.co_hoi</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_qlkh_tuong_tac_tree" model="ir.ui.view">
+            <field name="name">qlkh.tuong_tac.tree</field>
+            <field name="model">qlkh.tuong_tac</field>
+            <field name="arch" type="xml">
+                <tree><field name="khach_hang_id"/><field name="loai_tuong_tac"/><field name="ngay_tuong_tac"/><field name="ket_qua"/></tree>
+            </field>
+        </record>
+        <record id="view_qlkh_tuong_tac_form" model="ir.ui.view">
+            <field name="name">qlkh.tuong_tac.form</field>
+            <field name="model">qlkh.tuong_tac</field>
+            <field name="arch" type="xml">
+                <form string="Tương tác"><sheet><group col="4"><field name="khach_hang_id"/><field name="loai_tuong_tac"/><field name="ngay_tuong_tac"/><field name="ket_qua"/></group><group><field name="noi_dung"/></group></sheet></form>
+            </field>
+        </record>
+        <record id="action_qlkh_tuong_tac" model="ir.actions.act_window">
+            <field name="name">Tương tác</field>
+            <field name="res_model">qlkh.tuong_tac</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_qlkh_hop_dong_tree" model="ir.ui.view">
+            <field name="name">qlkh.hop_dong.tree</field>
+            <field name="model">qlkh.hop_dong</field>
+            <field name="arch" type="xml">
+                <tree><field name="ma_hop_dong"/><field name="khach_hang_id"/><field name="gia_tri"/><field name="ngay_bat_dau"/><field name="ngay_ket_thuc"/><field name="trang_thai"/></tree>
+            </field>
+        </record>
+        <record id="view_qlkh_hop_dong_form" model="ir.ui.view">
+            <field name="name">qlkh.hop_dong.form</field>
+            <field name="model">qlkh.hop_dong</field>
+            <field name="arch" type="xml">
+                <form string="Hợp đồng"><sheet><group col="4"><field name="ma_hop_dong"/><field name="khach_hang_id"/><field name="gia_tri"/><field name="ngay_bat_dau"/><field name="ngay_ket_thuc"/><field name="trang_thai"/></group><group><field name="mo_ta"/></group></sheet></form>
+            </field>
+        </record>
+        <record id="action_qlkh_hop_dong" model="ir.actions.act_window">
+            <field name="name">Hợp đồng</field>
+            <field name="res_model">qlkh.hop_dong</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_qlkh_giao_dich_tree" model="ir.ui.view">
+            <field name="name">qlkh.giao_dich.tree</field>
+            <field name="model">qlkh.giao_dich</field>
+            <field name="arch" type="xml">
+                <tree><field name="khach_hang_id"/><field name="ten_giao_dich"/><field name="ngay_giao_dich"/><field name="gia_tri"/><field name="trang_thai"/></tree>
+            </field>
+        </record>
+        <record id="view_qlkh_giao_dich_form" model="ir.ui.view">
+            <field name="name">qlkh.giao_dich.form</field>
+            <field name="model">qlkh.giao_dich</field>
+            <field name="arch" type="xml">
+                <form string="Lịch sử giao dịch"><sheet><group col="4"><field name="khach_hang_id"/><field name="ten_giao_dich"/><field name="ngay_giao_dich"/><field name="gia_tri"/><field name="trang_thai"/></group><group><field name="ghi_chu"/></group></sheet></form>
+            </field>
+        </record>
+        <record id="action_qlkh_giao_dich" model="ir.actions.act_window">
+            <field name="name">Lịch sử giao dịch</field>
+            <field name="res_model">qlkh.giao_dich</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_qlkh_ghi_chu_tree" model="ir.ui.view">
+            <field name="name">qlkh.ghi_chu.tree</field>
+            <field name="model">qlkh.ghi_chu</field>
+            <field name="arch" type="xml">
+                <tree><field name="khach_hang_id"/><field name="tieu_de"/><field name="ngay_tao"/></tree>
+            </field>
+        </record>
+        <record id="view_qlkh_ghi_chu_form" model="ir.ui.view">
+            <field name="name">qlkh.ghi_chu.form</field>
+            <field name="model">qlkh.ghi_chu</field>
+            <field name="arch" type="xml">
+                <form string="Ghi chú"><sheet><group><field name="khach_hang_id"/><field name="tieu_de"/><field name="ngay_tao"/></group><group><field name="noi_dung"/></group></sheet></form>
+            </field>
+        </record>
+        <record id="action_qlkh_ghi_chu" model="ir.actions.act_window">
+            <field name="name">Ghi chú</field>
+            <field name="res_model">qlkh.ghi_chu</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_qlkh_phan_hoi_tree" model="ir.ui.view">
+            <field name="name">qlkh.phan_hoi.tree</field>
+            <field name="model">qlkh.phan_hoi</field>
+            <field name="arch" type="xml">
+                <tree><field name="khach_hang_id"/><field name="tieu_de"/><field name="muc_do_hai_long"/><field name="ngay_phan_hoi"/></tree>
+            </field>
+        </record>
+        <record id="view_qlkh_phan_hoi_form" model="ir.ui.view">
+            <field name="name">qlkh.phan_hoi.form</field>
+            <field name="model">qlkh.phan_hoi</field>
+            <field name="arch" type="xml">
+                <form string="Phản hồi"><sheet><group><field name="khach_hang_id"/><field name="tieu_de"/><field name="muc_do_hai_long"/><field name="ngay_phan_hoi"/></group><group><field name="noi_dung"/></group></sheet></form>
+            </field>
+        </record>
+        <record id="action_qlkh_phan_hoi" model="ir.actions.act_window">
+            <field name="name">Phản hồi</field>
+            <field name="res_model">qlkh.phan_hoi</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_qlkh_nhiem_vu_tree" model="ir.ui.view">
+            <field name="name">qlkh.nhiem_vu.tree</field>
+            <field name="model">qlkh.nhiem_vu</field>
+            <field name="arch" type="xml">
+                <tree><field name="ten_nhiem_vu"/><field name="khach_hang_id"/><field name="nguoi_phu_trach"/><field name="han_xu_ly"/><field name="muc_do_uu_tien"/><field name="trang_thai"/></tree>
+            </field>
+        </record>
+        <record id="view_qlkh_nhiem_vu_form" model="ir.ui.view">
+            <field name="name">qlkh.nhiem_vu.form</field>
+            <field name="model">qlkh.nhiem_vu</field>
+            <field name="arch" type="xml">
+                <form string="Nhiệm vụ"><sheet><group col="4"><field name="ten_nhiem_vu"/><field name="khach_hang_id"/><field name="nguoi_phu_trach"/><field name="han_xu_ly"/><field name="muc_do_uu_tien"/><field name="trang_thai"/></group><group><field name="mo_ta"/></group></sheet></form>
+            </field>
+        </record>
+        <record id="action_qlkh_nhiem_vu" model="ir.actions.act_window">
+            <field name="name">Nhiệm vụ</field>
+            <field name="res_model">qlkh.nhiem_vu</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_qlkh_marketing_tree" model="ir.ui.view">
+            <field name="name">qlkh.marketing.tree</field>
+            <field name="model">qlkh.marketing</field>
+            <field name="arch" type="xml">
+                <tree><field name="ten_chien_dich"/><field name="khach_hang_id"/><field name="kenh"/><field name="ngan_sach"/><field name="ngay_bat_dau"/><field name="ngay_ket_thuc"/><field name="trang_thai"/></tree>
+            </field>
+        </record>
+        <record id="view_qlkh_marketing_form" model="ir.ui.view">
+            <field name="name">qlkh.marketing.form</field>
+            <field name="model">qlkh.marketing</field>
+            <field name="arch" type="xml">
+                <form string="Marketing"><sheet><group col="4"><field name="ten_chien_dich"/><field name="khach_hang_id"/><field name="kenh"/><field name="ngan_sach"/><field name="ngay_bat_dau"/><field name="ngay_ket_thuc"/><field name="trang_thai"/></group><group><field name="mo_ta"/></group></sheet></form>
+            </field>
+        </record>
+        <record id="action_qlkh_marketing" model="ir.actions.act_window">
+            <field name="name">Marketing</field>
+            <field name="res_model">qlkh.marketing</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="qlkh_menu_khach_hang" name="Khách hàng" parent="qlkh_menu_root" sequence="1" action="action_qlkh_khach_hang"/>
+        <menuitem id="qlkh_menu_co_hoi" name="Cơ hội" parent="qlkh_menu_root" sequence="2" action="action_qlkh_co_hoi"/>
+        <menuitem id="qlkh_menu_tuong_tac" name="Tương tác" parent="qlkh_menu_root" sequence="3" action="action_qlkh_tuong_tac"/>
+        <menuitem id="qlkh_menu_hop_dong" name="Hợp đồng" parent="qlkh_menu_root" sequence="4" action="action_qlkh_hop_dong"/>
+        <menuitem id="qlkh_menu_giao_dich" name="Lịch sử giao dịch" parent="qlkh_menu_root" sequence="5" action="action_qlkh_giao_dich"/>
+        <menuitem id="qlkh_menu_ghi_chu" name="Ghi chú" parent="qlkh_menu_root" sequence="6" action="action_qlkh_ghi_chu"/>
+        <menuitem id="qlkh_menu_phan_hoi" name="Phản hồi" parent="qlkh_menu_root" sequence="7" action="action_qlkh_phan_hoi"/>
+        <menuitem id="qlkh_menu_nhiem_vu" name="Nhiệm vụ" parent="qlkh_menu_root" sequence="8" action="action_qlkh_nhiem_vu"/>
+        <menuitem id="qlkh_menu_marketing" name="Marketing" parent="qlkh_menu_root" sequence="9" action="action_qlkh_marketing"/>
+    </data>
+</odoo>

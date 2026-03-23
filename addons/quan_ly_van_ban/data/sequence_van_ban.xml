@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_van_ban_den" model="ir.sequence">
+            <field name="name">Văn bản đến</field>
+            <field name="code">quan_ly_van_ban.van_ban_den</field>
+            <field name="prefix">VBD/</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

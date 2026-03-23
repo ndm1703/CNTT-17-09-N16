@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_van_ban_di_form" model="ir.ui.view">
+            <field name="name">van_ban_di</field>
+            <field name="model">van_ban_di</field>
+            <field name="arch" type="xml">
+                <form>
+                   <header>
+                       <button name="action_quet_ai" string="Quét AI" type="object" class="btn-secondary"
+                           attrs="{'invisible': [('file_data', '=', False)]}"/>
+                       <button name="action_nhan_xu_ly" string="Nhận xử lý" type="object"
+                           class="oe_highlight" attrs="{'invisible': [('trang_thai_xu_ly', '!=', 'nhap')]}"/>
+                       <button name="action_hoan_tat" string="Hoàn tất" type="object"
+                           class="oe_highlight" attrs="{'invisible': [('trang_thai_xu_ly', '!=', 'dang_xu_ly')]}"/>
+                       <button name="action_dat_nhap" string="Đặt về nháp" type="object"
+                           attrs="{'invisible': [('trang_thai_xu_ly', '=', 'nhap')]}"/>
+                       <field name="trang_thai_xu_ly" widget="statusbar" statusbar_visible="nhap,dang_xu_ly,hoan_tat"/>
+                       <field name="ai_last_scan" readonly="1"/>
+                   </header>
+                   <sheet>
+    <div class="oe_title">
+        <h1>
+            <field name="ten_van_ban"/>
+        </h1>
+    </div>
+
+            <group string="Thông tin chung" col="2">
+                <field name="so_van_ban_di"/>
+                <field name="so_hieu_van_ban"/>
+                <field name="noi_nhan"/>
+                <field name="ngay_xuat_ban"/>
+                <field name="ngay_het_han"/>
+                <field name="do_uu_tien"/>
+                <field name="so_ngay_con_lai" readonly="1"/>
+                <field name="state" readonly="1"/>
+            </group>
+
+            <group string="Khách hàng liên quan" col="2">
+                <field name="khach_hang_id"/>
+            </group>
+
+            <group string="Phân công xử lý" col="2">
+                <field name="partner_id"/>
+                <field name="nhan_vien_xu_ly_id"/>
+            </group>        
+
+            <group string="Tệp đính kèm">
+                <field name="file_data" filename="file_name"/>
+            </group>
+            <group string="Kết quả AI">
+                <field name="ai_summary" nolabel="1" widget="text" readonly="1"/>
+            </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_van_ban_di_tree" model="ir.ui.view">
+            <field name="name">van_ban_di</field>
+            <field name="model">van_ban_di</field>
+            <field name="arch" type="xml">
+                <tree decoration-danger="state == 'het_han'" decoration-warning="state == 'sap_het_han'">
+                    <field name="ten_van_ban"/>
+                    <field name="so_van_ban_di"/>
+                    <field name="so_hieu_van_ban"/>
+                    <field name="noi_nhan"/>
+                    <field name="do_uu_tien"/>
+                    <field name="file_name"/>
+                    <field name="partner_id"/>
+                    <field name="khach_hang_id"/>
+                    <field name="nhan_vien_xu_ly_id"/>
+                    <field name="ngay_xuat_ban"/>
+                    <field name="ngay_het_han"/>
+                    <field name="so_ngay_con_lai"/>
+                    <field name="trang_thai_xu_ly" widget="badge"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="van_ban_di_search">
+            <field name="name">van_ban_di search</field>
+            <field name="model">van_ban_di</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ten_van_ban"/>
+                    <field name="partner_id"/>
+                    <field name="so_van_ban_di"/>
+                    <field name="so_hieu_van_ban"/>
+                    <field name="noi_nhan"/>
+                    <field name="khach_hang_id"/>
+                    <field name="ngay_xuat_ban"/>
+                    <field name="do_uu_tien"/>
+                    <field name="trang_thai_xu_ly"/>
+                    <filter name="sap_het_han" string="Sắp hết hạn" domain="[('state','=','sap_het_han')]"/>
+                    <filter name="het_han" string="Hết hạn" domain="[('state','=','het_han')]"/>
+                    <filter name="dang_xu_ly" string="Đang xử lý" domain="[('trang_thai_xu_ly','=','dang_xu_ly')]"/>
+                    <filter name="hoan_tat" string="Hoàn tất" domain="[('trang_thai_xu_ly','=','hoan_tat')]"/>
+                    <filter name="uu_tien_khan" string="Ưu tiên khẩn" domain="[('do_uu_tien','=','khan')]"/>
+                    <group expand="0" string="Nhóm theo">
+                        <filter name="group_state" string="Hạn xử lý" context="{'group_by': 'state'}"/>
+                        <filter name="group_status" string="Trạng thái xử lý" context="{'group_by': 'trang_thai_xu_ly'}"/>
+                        <filter name="group_employee" string="Nhân viên xử lý" context="{'group_by': 'nhan_vien_xu_ly_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_van_ban_di" model="ir.actions.act_window">
+            <field name="name">Văn bản đi</field>
+            <field name="res_model">van_ban_di</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref = "van_ban_di_search"/>
+        </record>
+    </data>
+</odoo>
+        

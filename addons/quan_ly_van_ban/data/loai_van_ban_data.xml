@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="loai_van_ban_hop_dong" model="loai_van_ban">
+            <field name="ma_loai_van_ban">VB-HĐ</field>
+            <field name="ten_loai_van_ban">Hợp đồng</field>
+        </record>
+        <record id="loai_van_ban_cong_van" model="loai_van_ban">
+            <field name="ma_loai_van_ban">VB-CV</field>
+            <field name="ten_loai_van_ban">Công văn</field>
+        </record>
+        <record id="loai_van_ban_noi_bo" model="loai_van_ban">
+            <field name="ma_loai_van_ban">VB-NB</field>
+            <field name="ten_loai_van_ban">Nội bộ</field>
+        </record>
+    </data>
+</odoo>
