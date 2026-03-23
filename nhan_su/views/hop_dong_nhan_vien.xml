@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hop_dong_nhan_vien_tree" model="ir.ui.view">
+            <field name="name">hop_dong_nhan_vien.tree</field>
+            <field name="model">hop_dong_nhan_vien</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="trang_thai == 'hieu_luc'" decoration-warning="trang_thai == 'sap_het_han'" decoration-danger="trang_thai == 'het_han'">
+                    <field name="ma_hop_dong"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="loai_hop_dong"/>
+                    <field name="ngay_bat_dau"/>
+                    <field name="ngay_ket_thuc"/>
+                    <field name="luong_co_ban"/>
+                    <field name="phu_cap"/>
+                    <field name="trang_thai" widget="badge"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hop_dong_nhan_vien_form" model="ir.ui.view">
+            <field name="name">hop_dong_nhan_vien.form</field>
+            <field name="model">hop_dong_nhan_vien</field>
+            <field name="arch" type="xml">
+                <form string="Hợp đồng nhân viên">
+                    <sheet>
+                        <group col="4" string="Thông tin chung">
+                            <field name="ma_hop_dong"/>
+                            <field name="nhan_vien_id"/>
+                            <field name="chuc_vu_id"/>
+                            <field name="loai_hop_dong"/>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                            <field name="luong_co_ban"/>
+                            <field name="phu_cap"/>
+                            <field name="trang_thai" widget="badge" readonly="1"/>
+                        </group>
+                        <group string="Ghi chú">
+                            <field name="ghi_chu"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hop_dong_nhan_vien_search" model="ir.ui.view">
+            <field name="name">hop_dong_nhan_vien.search</field>
+            <field name="model">hop_dong_nhan_vien</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_hop_dong"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="loai_hop_dong"/>
+                    <field name="trang_thai"/>
+                    <filter name="filter_hieu_luc" string="Hiệu lực" domain="[('trang_thai', '=', 'hieu_luc')]"/>
+                    <filter name="filter_sap_het_han" string="Sắp hết hạn" domain="[('trang_thai', '=', 'sap_het_han')]"/>
+                    <filter name="filter_het_han" string="Hết hạn" domain="[('trang_thai', '=', 'het_han')]"/>
+                    <group expand="0" string="Nhóm theo">
+                        <filter name="group_nhan_vien" string="Nhân viên" context="{'group_by': 'nhan_vien_id'}"/>
+                        <filter name="group_chuc_vu" string="Chức vụ" context="{'group_by': 'chuc_vu_id'}"/>
+                        <filter name="group_trang_thai" string="Trạng thái" context="{'group_by': 'trang_thai'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hop_dong_nhan_vien" model="ir.actions.act_window">
+            <field name="name">Hợp đồng nhân viên</field>
+            <field name="res_model">hop_dong_nhan_vien</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_hop_dong_nhan_vien_search"/>
+        </record>
+    </data>
+</odoo>

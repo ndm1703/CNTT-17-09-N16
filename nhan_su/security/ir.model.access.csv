@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_khach_hang_user,access_khach_hang_user,model_khach_hang,base.group_user,1,1,1,1
+access_nhan_vien,nhan_vien,model_nhan_vien,base.group_user,1,1,1,1
+access_don_vi,don_vi,model_don_vi,base.group_user,1,1,1,1
+access_chuc_vu,chuc_vu,model_chuc_vu,base.group_user,1,1,1,1
+access_lich_su_cong_tac,lich_su_cong_tac,model_lich_su_cong_tac,base.group_user,1,1,1,1
+access_chung_chi_bang_cap,chung_chi_bang_cap,model_chung_chi_bang_cap,base.group_user,1,1,1,1
+access_chung_chi_bang_cap_level,chung_chi_bang_cap_level,model_chung_chi_bang_cap_level,base.group_user,1,1,1,1
+access_danh_sach_chung_chi_bang_cap,danh_sach_chung_chi_bang_cap,model_danh_sach_chung_chi_bang_cap,base.group_user,1,1,1,1
+access_khen_thuong_xu_phat_user,khen_thuong_xu_phat,model_khen_thuong_xu_phat,base.group_user,1,1,1,1
+access_hop_dong_nhan_vien,hop_dong_nhan_vien,model_hop_dong_nhan_vien,base.group_user,1,1,1,1
+access_bang_luong_nhan_vien,bang_luong_nhan_vien,model_bang_luong_nhan_vien,base.group_user,1,1,1,1
+access_nghi_phep_nhan_vien,nghi_phep_nhan_vien,model_nghi_phep_nhan_vien,base.group_user,1,1,1,1
+access_cham_cong_nhan_vien,cham_cong_nhan_vien,model_cham_cong_nhan_vien,base.group_user,1,1,1,1

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_nghi_phep_nhan_vien_form" model="ir.ui.view">
+            <field name="name">nghi_phep_nhan_vien.form</field>
+            <field name="model">nghi_phep_nhan_vien</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button
+                            name="action_gui_duyet"
+                            string="Gửi duyệt"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"
+                        />
+                        <button
+                            name="action_duyet"
+                            string="Duyệt"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('trang_thai', '!=', 'cho_duyet')]}"
+                        />
+                        <button
+                            name="action_tu_choi"
+                            string="Từ chối"
+                            type="object"
+                            attrs="{'invisible': [('trang_thai', '!=', 'cho_duyet')]}"
+                        />
+                        <button
+                            name="action_dat_nhap"
+                            string="Đặt về nháp"
+                            type="object"
+                            attrs="{'invisible': [('trang_thai', '=', 'nhap')]}"
+                        />
+                        <field name="trang_thai" widget="statusbar" statusbar_visible="nhap,cho_duyet,da_duyet,tu_choi"/>
+                    </header>
+                    <sheet>
+                        <group col="4" string="Thông tin chung">
+                            <field name="ma_nghi_phep"/>
+                            <field name="nhan_vien_id"/>
+                            <field name="loai_nghi_phep"/>
+                            <field name="so_ngay_nghi" readonly="1"/>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                        </group>
+                        <group string="Lý do">
+                            <field name="ly_do" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_nghi_phep_nhan_vien_tree" model="ir.ui.view">
+            <field name="name">nghi_phep_nhan_vien.tree</field>
+            <field name="model">nghi_phep_nhan_vien</field>
+            <field name="arch" type="xml">
+                <tree default_order="ngay_bat_dau desc">
+                    <field name="ma_nghi_phep"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="loai_nghi_phep"/>
+                    <field name="ngay_bat_dau"/>
+                    <field name="ngay_ket_thuc"/>
+                    <field name="so_ngay_nghi"/>
+                    <field name="trang_thai" widget="badge"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_nghi_phep_nhan_vien_search" model="ir.ui.view">
+            <field name="name">nghi_phep_nhan_vien.search</field>
+            <field name="model">nghi_phep_nhan_vien</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_nghi_phep"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="loai_nghi_phep"/>
+                    <field name="trang_thai"/>
+                    <field name="ngay_bat_dau"/>
+                    <field name="ngay_ket_thuc"/>
+                    <filter name="cho_duyet" string="Chờ duyệt" domain="[('trang_thai','=','cho_duyet')]"/>
+                    <filter name="da_duyet" string="Đã duyệt" domain="[('trang_thai','=','da_duyet')]"/>
+                    <filter name="tu_choi" string="Từ chối" domain="[('trang_thai','=','tu_choi')]"/>
+                    <group expand="0" string="Nhóm theo">
+                        <filter name="group_nhan_vien" string="Nhân viên" context="{'group_by': 'nhan_vien_id'}"/>
+                        <filter name="group_loai" string="Loại nghỉ phép" context="{'group_by': 'loai_nghi_phep'}"/>
+                        <filter name="group_trang_thai" string="Trạng thái" context="{'group_by': 'trang_thai'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_nghi_phep_nhan_vien" model="ir.actions.act_window">
+            <field name="name">Nghỉ phép</field>
+            <field name="res_model">nghi_phep_nhan_vien</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_nghi_phep_nhan_vien_search"/>
+        </record>
+    </data>
+</odoo>

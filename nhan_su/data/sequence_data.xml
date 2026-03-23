@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_hop_dong_nhan_vien" model="ir.sequence">
+            <field name="name">Hop Dong Nhan Vien</field>
+            <field name="code">nhan_su.hop_dong_nhan_vien</field>
+            <field name="prefix">HD/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_bang_luong_nhan_vien" model="ir.sequence">
+            <field name="name">Bang Luong Nhan Vien</field>
+            <field name="code">nhan_su.bang_luong_nhan_vien</field>
+            <field name="prefix">BL/%(year)s/%(month)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_nghi_phep_nhan_vien" model="ir.sequence">
+            <field name="name">Nghi Phep Nhan Vien</field>
+            <field name="code">nhan_su.nghi_phep_nhan_vien</field>
+            <field name="prefix">NP/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_cham_cong_nhan_vien" model="ir.sequence">
+            <field name="name">Cham Cong Nhan Vien</field>
+            <field name="code">nhan_su.cham_cong_nhan_vien</field>
+            <field name="prefix">CC/%(year)s/%(month)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

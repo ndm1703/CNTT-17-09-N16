@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="nhan_su.DashboardMain">
+        <div class="o_nhan_su_dashboard">
+            <div class="o_nhan_su_dashboard_header">
+                <div>
+                    <h1 t-esc="dashboard.title"/>
+                    <p>Dashboard quản trị nhân sự tổng hợp theo dữ liệu hiện có trong hệ thống.</p>
+                </div>
+                <div class="o_nhan_su_shortcuts">
+                    <t t-foreach="dashboard.shortcuts" t-as="shortcut">
+                        <a
+                            href="#"
+                            class="o_nhan_su_dashboard_action_link o_nhan_su_shortcut"
+                            t-att-data-action-xmlid="shortcut.action_xmlid"
+                        >
+                            <t t-esc="shortcut.label"/>
+                        </a>
+                    </t>
+                </div>
+            </div>
+
+            <div class="o_nhan_su_card_grid">
+                <t t-foreach="dashboard.cards" t-as="card">
+                    <a
+                        href="#"
+                        t-attf-class="o_nhan_su_dashboard_action_link o_nhan_su_card o_theme_#{card.theme}"
+                        t-att-data-action-xmlid="card.action_xmlid"
+                    >
+                        <div class="o_nhan_su_card_label" t-esc="card.label"/>
+                        <div class="o_nhan_su_card_value" t-esc="card.value"/>
+                    </a>
+                </t>
+            </div>
+
+            <div class="o_nhan_su_summary_row">
+                <t t-foreach="dashboard.summary_sections" t-as="section">
+                    <div t-attf-class="o_nhan_su_summary_box o_theme_#{section.theme}">
+                        <div class="o_nhan_su_section_title" t-esc="section.title"/>
+                        <div class="o_nhan_su_summary_items">
+                            <t t-foreach="section.items" t-as="item">
+                                <div class="o_nhan_su_summary_item">
+                                    <span class="o_nhan_su_item_label" t-esc="item.label"/>
+                                    <strong class="o_nhan_su_item_value" t-esc="item.value"/>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </div>
+
+            <div class="o_nhan_su_chart_grid">
+                <div class="o_nhan_su_chart_panel o_theme_green">
+                    <div class="o_nhan_su_section_title">Nhân sự theo Phòng ban</div>
+                    <div class="o_nhan_su_chart_body">
+                        <canvas class="o_nhan_su_department_chart"/>
+                    </div>
+                </div>
+                <div class="o_nhan_su_chart_panel o_theme_amber">
+                    <div class="o_nhan_su_section_title">
+                        Biến động nhân sự theo tháng <t t-esc="dashboard.current_year"/>
+                    </div>
+                    <div class="o_nhan_su_chart_body">
+                        <canvas class="o_nhan_su_trend_chart"/>
+                    </div>
+                </div>
+                <div class="o_nhan_su_chart_panel o_theme_red">
+                    <div class="o_nhan_su_section_title">Phân bổ độ tuổi</div>
+                    <div class="o_nhan_su_chart_body">
+                        <canvas class="o_nhan_su_age_chart"/>
+                    </div>
+                </div>
+                <div class="o_nhan_su_chart_panel o_theme_dark">
+                    <div class="o_nhan_su_section_title">Tỷ lệ Thưởng/Phạt</div>
+                    <div class="o_nhan_su_chart_body">
+                        <canvas class="o_nhan_su_reward_chart"/>
+                    </div>
+                    <div class="o_nhan_su_highlights">
+                        <t t-foreach="dashboard.highlights" t-as="highlight">
+                            <div class="o_nhan_su_highlight_item">
+                                <span t-esc="highlight.label"/>
+                                <strong t-esc="highlight.value"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

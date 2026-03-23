@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View -->
+        <record id="view_khach_hang_tree" model="ir.ui.view">
+            <field name="name">khach_hang.tree</field>
+            <field name="model">khach_hang</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách khách hàng" default_order="trang_thai, ma_khach_hang">
+                    <field name="ma_khach_hang"/>
+                    <field name="name"/>
+                    <field name="loai_khach"/>
+                    <field name="email"/>
+                    <field name="so_dien_thoai"/>
+                    <field name="trang_thai"/>
+                    <field name="attachment_count" string="Hồ sơ số hóa"/>
+                </tree>
+            </field>
+        </record>
+
+    <!-- Kanban View -->
+    <record id="view_khach_hang_kanban" model="ir.ui.view">
+        <field name="name">khach_hang.kanban</field>
+        <field name="model">khach_hang</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="trang_thai">
+                <field name="name"/>
+                <field name="ma_khach_hang"/>
+                <field name="loai_khach"/>
+                <field name="trang_thai"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record_top">
+                            <field name="name"/>
+                        </div>
+                        <div class="o_kanban_record_bottom">
+                            <div>
+                                <strong>Mã</strong>: <field name="ma_khach_hang"/>
+                            </div>
+                            <div>
+                                <strong>Loại</strong>: <field name="loai_khach"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_khach_hang_search" model="ir.ui.view">
+        <field name="name">khach_hang.search</field>
+        <field name="model">khach_hang</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="ma_khach_hang"/>
+                <field name="loai_khach"/>
+                <field name="trang_thai"/>
+                <filter name="filter_khach_ca_nhan" string="Khách cá nhân" domain="[('loai_khach','=','ca_nhan')]"/>
+                <filter name="filter_khach_doanh_nghiep" string="Khách doanh nghiệp" domain="[('loai_khach','=','doanh_nghiep')]"/>
+                <filter name="filter_dang_hoat_dong" string="Đang hoạt động" domain="[('trang_thai','=','hoat_dong')]"/>
+                <filter name="filter_tiem_nang" string="Tiềm năng" domain="[('trang_thai','=','tiem_nang')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_khach_hang_form" model="ir.ui.view">
+        <field name="name">khach_hang.form</field>
+        <field name="model">khach_hang</field>
+        <field name="arch" type="xml">
+            <form string="Thông tin khách hàng">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="ma_khach_hang"/>
+                            <field name="loai_khach"/>
+                            <field name="trang_thai"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                            <field name="so_dien_thoai"/>
+                            <field name="so_tien_han_muc"/>
+                        </group>
+                    </group>
+
+                    <group string="Thông tin địa chỉ">
+                        <group>
+                            <field name="dia_chi"/>
+                            <field name="thanh_pho"/>
+                            <field name="quoc_gia"/>
+                        </group>
+                    </group>
+
+                    <group string="Thông tin doanh nghiệp">
+                        <group>
+                            <field name="ma_so_thue"/>
+                            <field name="nguoi_dai_dien"/>
+                            <field name="chuc_danh"/>
+                        </group>
+                    </group>
+
+                    <group string="Ghi chú">
+                        <field name="ghi_chu"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+
+    <!-- Action -->
+    <record id="action_khach_hang" model="ir.actions.act_window">
+        <field name="name">Khách hàng</field>
+        <field name="res_model">khach_hang</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="view_khach_hang_search"/>
+    </record>
+
+
+</odoo>
