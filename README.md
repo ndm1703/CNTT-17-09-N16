@@ -97,7 +97,7 @@ Người sử dụng truy cập theo đường dẫn _http://localhost:8069/_ đ
 ## 📝 5. License
 
 © 2024 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.
-
+Nguồn tham khảo :https://github.com/NguyenXuanThang18/TTDN-15-01-N4
 ---
 
     
