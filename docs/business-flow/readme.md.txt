@@ -1,0 +1,3 @@
+Quy trình: Số hóa văn bản ký kết với khách hàng & Tự động hóa thông báo.
+Module tham gia: CRM (Khách hàng), DMS (Văn bản), HRM (Dữ liệu nhân viên gốc).
+Điểm nhấn công nghệ: AI OCR bóc tách hợp đồng, Trigger tự động cập nhật trạng thái cơ hội kinh doanh, API Telegram thông báo nhắc ký duyệt.
