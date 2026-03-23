@@ -20,7 +20,7 @@
 </div>
 
 ## 📖 1. Giới thiệu
-Platform ERP được áp dụng vào học phần Thực tập doanh nghiệp dựa trên mã nguồn mở Odoo. 
+Platform ERP được áp dụng vào học phần Hội nhập và quản trị doanh nghiệp dựa trên mã nguồn mở Odoo. 
 
 ## 🔧 2. Các công nghệ được sử dụng
 <div align="center">
